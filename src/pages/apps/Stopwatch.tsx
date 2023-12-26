@@ -22,7 +22,6 @@ const Stopwatch = () => {
     setIsRunning(false);
   };
 
-  import { useEffect } from "react";
 
 // ... (other parts of your component)
 
