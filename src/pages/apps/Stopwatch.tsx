@@ -22,19 +22,27 @@ const Stopwatch = () => {
     setIsRunning(false);
   };
 
-  useEffect(() => {
-    let intervalID: NodeJS.Timer;
+  import { useEffect } from "react";
 
-    if (isRunning) {
-      intervalID = setInterval(() => {
-        setTime((prev) => prev + 1);
-      }, 1000);
-    }
+// ... (other parts of your component)
 
-    return () => {
+useEffect(() => {
+  let intervalID: ReturnType<typeof setInterval> | undefined;
+
+  if (isRunning) {
+    intervalID = setInterval(() => {
+      setTime((prev) => prev + 1);
+    }, 1000);
+  }
+
+  return () => {
+    if (intervalID) {
       clearInterval(intervalID);
-    };
-  }, [isRunning]);
+    }
+  };
+}, [isRunning]);
+
+  
 
   return (
     <div className="admin-container">
